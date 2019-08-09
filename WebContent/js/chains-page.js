@@ -93,8 +93,11 @@ var Chains;
             var charH = 22;
             ctx.fillStyle = "rgba(255, 166, 0, 0.1)";
             ctx.strokeStyle = selected ? (Chains.ui.getTheme().name === "dark" ? "white" : "darkred") : "brown";
-            ctx.strokeRect(charW * info.matchStart + 1, y + 2, charW * (info.matchEnd - info.matchStart) - 1, 26);
+            ctx.strokeRect(this.getMatchingOffset(renderInfo, charW) + charW * info.matchStart + 1, y + 2, charW * (info.matchEnd - info.matchStart) - 1, 26);
             this.renderText(renderInfo, y, charW, charH);
+        };
+        SimpleCellRenderer.prototype.getMatchingOffset = function (renderInfo, charW) {
+            return 0;
         };
         return SimpleCellRenderer;
     }());
@@ -117,12 +120,22 @@ var Chains;
         }
         ExampleLineCellRenderer.prototype.renderText = function (renderInfo, y, charW, charH) {
             var ctx = renderInfo.context;
+            var x = 0;
+            var number = renderInfo.data.exampleLine.number + "";
+            ctx.fillStyle = Chains.ui.getTheme().exampleLineColor;
+            ctx.fillRect(x + 1, y, number.length * charW - 1, 29);
+            ctx.fillStyle = Chains.ui.getTheme().exampleLineNumberColor;
+            ctx.fillText(number, x, y + charH - 2);
+            x += this.getMatchingOffset(renderInfo, charW);
             ctx.fillStyle = Chains.ui.getTheme().exampleLineColor;
             var line = renderInfo.data.exampleLine;
-            ctx.fillText(">" + line.line, 0, y + charH);
-            var x = (line.line.length + 1) * charW;
+            ctx.fillText(">" + line.line, x, y + charH);
+            x += (line.line.length + 1) * charW;
             ctx.fillStyle = Chains.ui.getTheme().exampleFileColor;
             ctx.fillText("/" + line.file.filename, x, y + charH);
+        };
+        ExampleLineCellRenderer.prototype.getMatchingOffset = function (renderInfo, charW) {
+            return (renderInfo.data.exampleLine.number + "").length * charW;
         };
         return ExampleLineCellRenderer;
     }(SimpleCellRenderer));

@@ -8,7 +8,8 @@ var Chains;
         chainRetTypeColor: "#20658a",
         chainVerColor: "rgba(40, 90, 0, 0.5)",
         exampleFileColor: "#008800",
-        exampleLineColor: "#880088"
+        exampleLineColor: "#880088",
+        exampleLineNumberColor: "whiteSmoke"
     };
     var DARK_THEME = {
         name: "dark",
@@ -18,7 +19,8 @@ var Chains;
         chainRetTypeColor: "#5198ad",
         chainVerColor: "rgb(40, 90, 0)",
         exampleFileColor: "#33cc33",
-        exampleLineColor: "#dd44dd"
+        exampleLineColor: "#dd44dd",
+        exampleLineNumberColor: "black"
     };
     var THEME = {
         light: LIGHT_THEME,

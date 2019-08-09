@@ -102,11 +102,15 @@ namespace Chains {
 
             ctx.fillStyle = "rgba(255, 166, 0, 0.1)";
             ctx.strokeStyle = selected ? (Chains.ui.getTheme().name === "dark" ? "white" : "darkred") : "brown";
-            ctx.strokeRect(charW * info.matchStart + 1, y + 2, charW * (info.matchEnd - info.matchStart) - 1, 26);
+            ctx.strokeRect(this.getMatchingOffset(renderInfo, charW) + charW * info.matchStart + 1, y + 2, charW * (info.matchEnd - info.matchStart) - 1, 26);
 
             // label
 
             this.renderText(renderInfo, y, charW, charH);
+        }
+
+        getMatchingOffset(renderInfo: RenderCellInfo<ChainMatchInfo>, charW : number) {
+            return 0;
         }
 
         abstract renderText(renderInfo: RenderCellInfo<ChainMatchInfo>, y: number, charW: number, charH: number): void;
@@ -124,13 +128,30 @@ namespace Chains {
 
         renderText(renderInfo: RenderCellInfo<ChainMatchInfo>, y: number, charW: number, charH: number): void {
             let ctx = renderInfo.context;
+            
+            let x = 0;
+            let number = renderInfo.data.exampleLine.number + "";
+            ctx.fillStyle = ui.getTheme().exampleLineColor;
+            ctx.fillRect(x + 1, y, number.length * charW - 1, 29);
+            ctx.fillStyle = ui.getTheme().exampleLineNumberColor;
+            ctx.fillText(number, x, y + charH - 2);
+            
+            x += this.getMatchingOffset(renderInfo, charW);
+            
             ctx.fillStyle = Chains.ui.getTheme().exampleLineColor;
             let line = renderInfo.data.exampleLine;
-            ctx.fillText(">" + line.line, 0, y + charH);
-            let x = (line.line.length + 1) * charW;
+
+            ctx.fillText(">" + line.line, x, y + charH);
+            x += (line.line.length + 1) * charW;
+
             ctx.fillStyle = Chains.ui.getTheme().exampleFileColor;
             ctx.fillText("/" + line.file.filename, x, y + charH);
         }
+
+        getMatchingOffset(renderInfo: RenderCellInfo<ChainMatchInfo>, charW : number) {
+            return (renderInfo.data.exampleLine.number + "").length * charW;
+        }
+
     }
 
 
