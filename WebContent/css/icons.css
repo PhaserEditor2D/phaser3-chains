@@ -1,0 +1,48 @@
+.icon-link {
+    background-image: url(../icons/link.png);
+}
+
+.icon-field {
+    background-image: url(../icons/field.png);
+}
+
+.icon-property {
+    background-image: url(../icons/property.png);
+}
+
+.icon-class {
+    background-image: url(../icons/class.png);
+}
+
+.icon-function {
+    background-image: url(../icons/function.png);
+}
+
+.icon-method {
+    background-image: url(../icons/method.png);
+}
+
+.icon-enum {
+    background-image: url(../icons/enum.png);
+}
+
+.icon-package_obj {
+    background-image: url(../icons/package_obj.png);
+}
+
+.icon-constant {
+    background-image: url(../icons/constant.png);
+}
+
+.icon-event {
+    background-image: url(../icons/event.png);
+}
+
+.api-icon {
+    background-size: 1em 1em;
+    background-position: 0px 2px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}

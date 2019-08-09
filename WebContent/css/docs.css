@@ -1,0 +1,53 @@
+#docsContainer {
+    position: fixed;
+    display: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 40em;
+    padding: 2em;
+    bottom: 4em;
+    height: 40%;
+    border-style: solid;
+    border-width: 0.2em;
+}
+
+#docsContent {
+    height: 96%;
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+}
+
+.theme-dark #docsContent a {
+    color: burlywood;
+}
+
+.theme-light #docsContent a {
+    color: brown;
+}
+
+.theme-dark #docsContainer, .theme-dark #docsSections {
+    color: whitesmoke;
+    background: rgb(20, 20, 20);
+    border-color: rgb(50, 50, 50);
+}
+
+.theme-light #docsContainer, .theme-light #docsSections {
+    background: white;
+    border-color: gray;
+}
+
+#docsSections {
+    float: left;
+}
+
+.docsSectionLink {
+    font-size: small;
+    margin-right: 1ch;
+}
+
+.theme-light .docsSectionLink, .theme-light .docsSectionLink {
+    color: gray;
+}
+
+.theme-dark .doc-section, .theme-dark .docsSectionLink {
+    color: whitesmoke;
+}

@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "module": "es2015",
+        "lib": ["ES2015", "dom"],
+        "removeComments": true,
+        "pretty": true,
+        "typeRoots": ["./typings"],
+        "outDir": "../js"
+    }
+}

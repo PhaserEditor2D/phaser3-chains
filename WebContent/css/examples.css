@@ -1,0 +1,37 @@
+#exampleContainer {
+    display: none;
+    position: fixed;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 40em;
+    right: 3em;
+    padding: 2em;
+    bottom: 4em;
+    height: 4em;
+    border-style: solid;
+    border-width: 0.2em;
+}
+
+#exampleContent {
+    height: 98%;
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+}
+
+.theme-dark #exampleContent a {
+    color: burlywood;
+}
+
+.theme-light #exampleContent a {
+    color: brown;
+}
+
+.theme-dark #exampleContainer {
+    color: whitesmoke;
+    background: rgb(20, 20, 20);
+    border-color: rgb(50, 50, 50);
+}
+
+.theme-light #exampleContainer {
+    background: white;
+    border-color: gray;
+}
