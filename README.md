@@ -1,6 +1,6 @@
 # Phaser Chains
 
-Phaser Chains is a tool to browse the Phaser API and examples. It is not the common navigator that presents the data as a tree of elements.
+[Phaser Chains](https://phasereditor2d.com/chains) is a tool to browse the Phaser API and examples. It is not the common navigator that presents the data as a tree of elements.
 
 For each Phaser API element we create a line of code (chain) with a particular format, so you will perform a search on all these lines and use the format to extract the information you are looking for.
 
