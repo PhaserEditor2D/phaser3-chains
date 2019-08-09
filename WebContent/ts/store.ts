@@ -61,7 +61,20 @@ namespace Chains {
 
             {
                 let msg = document.createElement("p");
-                msg.innerHTML = "Fetching chains [1/3]...";
+                msg.innerHTML = `I support Phaser v${PHASER_VERSION}.`;
+                preloadElement.appendChild(msg);
+
+                msg = document.createElement("p");
+                msg.innerHTML = `Now I will fetch some resources but it takes a while...`;
+                preloadElement.appendChild(msg);
+
+                msg = document.createElement("p");
+                msg.innerHTML = `(I invite you to read my <a href="https://github.com/PhaserEditor2D/phaser30chains">documentation</a>, it is short)`;
+                preloadElement.appendChild(msg);
+            }
+            {
+                let msg = document.createElement("p");
+                msg.innerHTML = "I am fetching the chains ~10MB [1/3]...";
                 preloadElement.appendChild(msg);
             }
 
@@ -71,7 +84,7 @@ namespace Chains {
 
             {
                 let msg = document.createElement("p");
-                msg.innerHTML = "Fetching API [2/3]...";
+                msg.innerHTML = "I am fetching the docs ~8MB [2/3]...";
                 preloadElement.appendChild(msg);
             }
 
@@ -81,7 +94,7 @@ namespace Chains {
 
             {
                 let msg = document.createElement("p");
-                msg.innerHTML = "Fetching examples [3/3]...";
+                msg.innerHTML = "I am fetching the examples ~7MB [3/3]...";
                 preloadElement.appendChild(msg);
             }
 
@@ -89,10 +102,7 @@ namespace Chains {
             let examplesData = await resp.json();
             this.createExamplesData(examplesData);
 
-
-            {
-                preloadElement.remove();
-            }
+            preloadElement.remove();
         }
 
         createExamplesData(examplesData: any[]) {

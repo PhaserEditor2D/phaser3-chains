@@ -66,7 +66,7 @@ namespace Chains {
         }
 
         private updateThemeButton() {
-            this._themeBtn.innerHTML = this.isDarkTheme() ? "Light" : "Dark";
+            this._themeBtn.innerHTML = this.isDarkTheme() ? "Go Lighter" : "Go Darker";
         }
 
         swapTheme() {

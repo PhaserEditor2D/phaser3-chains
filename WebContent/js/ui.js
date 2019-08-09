@@ -41,7 +41,7 @@ var Chains;
             return this._theme;
         };
         UI.prototype.updateThemeButton = function () {
-            this._themeBtn.innerHTML = this.isDarkTheme() ? "Light" : "Dark";
+            this._themeBtn.innerHTML = this.isDarkTheme() ? "Go Lighter" : "Go Darker";
         };
         UI.prototype.swapTheme = function () {
             var html = document.getElementsByTagName("html")[0];

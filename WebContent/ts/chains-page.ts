@@ -264,14 +264,14 @@ namespace Chains {
                     let queryParts = query.split(" ").map(q => q.trim()).filter(q => q.length > 0);
 
                     for (let file of Chains.store.getExampleFilesData()) {
-                        let result = this.matches(queryParts, "/" + file.filename);
+                        let result = this.matches(queryParts, "/" + file.filename.toLowerCase());
                         if (result.ok) {
                             examplesFilesMatches.push(new ChainMatchInfo(null, file, null, result.start, result.end));
                         }
                     }
 
                     for (let line of Chains.store.getExampleLinesData()) {
-                        let result = this.matches(queryParts, ">" + line.line);
+                        let result = this.matches(queryParts, ">" + line.line.toLowerCase());
                         if (result.ok) {
                             examplesLinesMatches.push(new ChainMatchInfo(null, null, line, result.start, result.end));
                         }
@@ -312,13 +312,14 @@ namespace Chains {
 
         matches(queryParts: string[], input: string) {
             let all = true;
-            let index = 0;
-            let start = Number.MAX_VALUE;
+            let start = -1;
             let end = 0;
             for (let queryPart of queryParts) {
-                index = input.indexOf(queryPart, index);
-                if (index >= 0) {
-                    start = Math.min(index, start);
+                let index = input.indexOf(queryPart, end);
+                if (index >= end) {
+                    if (start === -1) {
+                        start = index;
+                    }
                     end = index + queryPart.length;
                 } else {
                     all = false;

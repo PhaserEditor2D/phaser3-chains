@@ -18,6 +18,8 @@ And the result is:
 ![Search chains to add objects](guide-images/search-1.png)
 
 
-If you scroll down you will see a lot of lines extracted from the official Phaser examples:
+If you scroll down a bit, you will see a lot of lines extracted from the official Phaser examples:
 
 ![Search chains to add objects in examples](guide-images/search-2.png).
+
+This means, your query is used to search on the Phaser API and the Phaser examples at the same time. Phaser provides a lot of examples and every major feature is showcase in one or more of them. 

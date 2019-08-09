@@ -82,7 +82,7 @@ var Chains;
         }
         Store.prototype.init = function () {
             return __awaiter(this, void 0, void 0, function () {
-                var preloadElement, msg, resp, apiData, msg, chainsData, msg, examplesData;
+                var preloadElement, msg, msg, resp, apiData, msg, chainsData, msg, examplesData;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
@@ -90,7 +90,18 @@ var Chains;
                             preloadElement.style.display = "inherit";
                             {
                                 msg = document.createElement("p");
-                                msg.innerHTML = "Fetching chains [1/3]...";
+                                msg.innerHTML = "I support Phaser v" + Chains.PHASER_VERSION + ".";
+                                preloadElement.appendChild(msg);
+                                msg = document.createElement("p");
+                                msg.innerHTML = "Now I will fetch some resources but it takes a while...";
+                                preloadElement.appendChild(msg);
+                                msg = document.createElement("p");
+                                msg.innerHTML = "(I invite you to read my <a href=\"https://github.com/PhaserEditor2D/phaser30chains\">documentation</a>, it is short)";
+                                preloadElement.appendChild(msg);
+                            }
+                            {
+                                msg = document.createElement("p");
+                                msg.innerHTML = "I am fetching the chains ~10MB [1/3]...";
                                 preloadElement.appendChild(msg);
                             }
                             return [4, fetch("data/api-" + Chains.VERSION + ".json")];
@@ -102,7 +113,7 @@ var Chains;
                             this.createApiMembers(apiData);
                             {
                                 msg = document.createElement("p");
-                                msg.innerHTML = "Fetching API [2/3]...";
+                                msg.innerHTML = "I am fetching the docs ~8MB [2/3]...";
                                 preloadElement.appendChild(msg);
                             }
                             return [4, fetch("data/chains-" + Chains.VERSION + ".json")];
@@ -114,7 +125,7 @@ var Chains;
                             this.createChainsData(chainsData);
                             {
                                 msg = document.createElement("p");
-                                msg.innerHTML = "Fetching examples [3/3]...";
+                                msg.innerHTML = "I am fetching the examples ~7MB [3/3]...";
                                 preloadElement.appendChild(msg);
                             }
                             return [4, fetch("data/examples-" + Chains.VERSION + ".json")];
@@ -124,9 +135,7 @@ var Chains;
                         case 6:
                             examplesData = _a.sent();
                             this.createExamplesData(examplesData);
-                            {
-                                preloadElement.remove();
-                            }
+                            preloadElement.remove();
                             return [2];
                     }
                 });
