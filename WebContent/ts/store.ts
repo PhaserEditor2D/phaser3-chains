@@ -69,7 +69,7 @@ namespace Chains {
                 preloadElement.appendChild(msg);
 
                 msg = document.createElement("p");
-                msg.innerHTML = `(I invite you to read my <a href="https://github.com/PhaserEditor2D/phaser30chains">documentation</a>, it is short)`;
+                msg.innerHTML = `(I invite you to read my <a href="https://github.com/PhaserEditor2D/phaser3-chains">documentation</a>, it is short)`;
                 preloadElement.appendChild(msg);
             }
             {
