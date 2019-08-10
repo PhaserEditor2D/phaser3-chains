@@ -39,11 +39,11 @@ Then you will get a merge of Phaser API elements and Phaser examples lines.
 
 If you click on a chain created with the Phaser API, it shows a panel with: 
 
-* The documentation of that API member.
-* A toolbar with a to open the source of the selected member.
-* and two buttons to navigate on the history of the shown documentation.
+* The documentation of that API element.
+* A toolbar with a button to open the source of the selected element.
+* And two buttons to navigate on the history of the documentation.
 
-The documentation contains links to other API members, so you can get more information quickly.
+The documentation contains links to other API elements, so you can get more information quickly.
 
 You can press the `ESC` key to show/hide the panel.
 
@@ -56,7 +56,7 @@ When you click on an example line or example file name, it shows a panel with li
 
 ![Example panel](guide-images/example-panel.png)
 
-## The "mini-map"
+## The mini-map
 
 Next to the scroll bar there is a kind of mini-map of the chains. There are three different type of chains (API chains, example files, example lines) and each type has a color. The mini-map show a small bar with the chain colors, so you can scroll quickly to the kind of chains you are looking for.
 
@@ -87,7 +87,7 @@ Every chain starts with a special symbol that identifies it. you can use that sy
 
 ### Select chains by version
 
-Every API chain ends with the version of the API member. You can write a query to get the API introduced in a specific version by using the version number. For example, this query shows all the `Phaser.LoaderPlugin` members introduced in Phaser v3.17:
+Every API chain ends with the version of the API element. You can write a query to get the API introduced in a specific version by using the version number. For example, this query shows all the `Phaser.LoaderPlugin` members introduced in Phaser v3.17:
 
 ```
 this.load v3.1
