@@ -36,12 +36,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var Chains;
 (function (Chains) {
     var ChainItem = (function () {
-        function ChainItem(chain, returnType, icon, memberId, searchInput) {
+        function ChainItem(chain, returnType, icon, memberId, inherited, depth, searchInput) {
             if (searchInput === void 0) { searchInput = (chain + " : " + returnType).toLowerCase(); }
             this.chain = chain;
             this.returnType = returnType;
             this.icon = icon;
             this.memberId = memberId;
+            this.inherited = inherited;
+            this.depth = depth;
             this.searchInput = searchInput;
         }
         return ChainItem;
@@ -156,7 +158,7 @@ var Chains;
             this._chainsData = [];
             for (var _i = 0, chainsData_1 = chainsData; _i < chainsData_1.length; _i++) {
                 var item = chainsData_1[_i];
-                var chain = new ChainItem(item.chain, item.retType, item.icon, item.id);
+                var chain = new ChainItem(item.chain, item.retType, item.icon, item.id, item.inherit, item.depth);
                 chain.member = this.getApiMember(chain.memberId);
                 this._chainsData.push(chain);
             }

@@ -109,7 +109,7 @@ namespace Chains {
             this.renderText(renderInfo, y, charW, charH);
         }
 
-        getMatchingOffset(renderInfo: RenderCellInfo<ChainMatchInfo>, charW : number) {
+        getMatchingOffset(renderInfo: RenderCellInfo<ChainMatchInfo>, charW: number) {
             return 0;
         }
 
@@ -128,16 +128,16 @@ namespace Chains {
 
         renderText(renderInfo: RenderCellInfo<ChainMatchInfo>, y: number, charW: number, charH: number): void {
             let ctx = renderInfo.context;
-            
+
             let x = 0;
             let number = renderInfo.data.exampleLine.number + "";
             ctx.fillStyle = ui.getTheme().exampleLineColor;
             ctx.fillRect(x + 1, y, number.length * charW - 1, 29);
             ctx.fillStyle = ui.getTheme().exampleLineNumberColor;
             ctx.fillText(number, x, y + charH - 2);
-            
+
             x += this.getMatchingOffset(renderInfo, charW);
-            
+
             ctx.fillStyle = Chains.ui.getTheme().exampleLineColor;
             let line = renderInfo.data.exampleLine;
 
@@ -148,7 +148,7 @@ namespace Chains {
             ctx.fillText("/" + line.file.filename, x, y + charH);
         }
 
-        getMatchingOffset(renderInfo: RenderCellInfo<ChainMatchInfo>, charW : number) {
+        getMatchingOffset(renderInfo: RenderCellInfo<ChainMatchInfo>, charW: number) {
             return (renderInfo.data.exampleLine.number + "").length * charW;
         }
 
@@ -225,6 +225,12 @@ namespace Chains {
             this._view.resize(width, height);
         }
 
+        static EXPAND = {
+            "this.": "scene.",
+            "this ": "scene ",
+            "@ this.": "@ scene",
+            "@ this ": "@ scene "
+        };
 
         performQuery(query: string): void {
             localStorage.chainsLastQuery = query;
@@ -239,16 +245,13 @@ namespace Chains {
                 if (this.showChains) {
                     let query2 = query;
 
-                    if (query.startsWith("this.")) {
-                        query2 = "scene." + query.substring(5, query.length);
-                    } else if (query.startsWith("this ")) {
-                        query2 = "scene." + query.substring(5, query.length);
-                    } else if (query.startsWith("@ this.")) {
-                        query2 = "@ scene." + query.substring(7, query.length);
-                    } else if (query.startsWith("@ this ")) {
-                        query2 = "@ scene." + query.substring(7, query.length);
+                    for(let key in ChainsPage.EXPAND) {
+                        let value = ChainsPage.EXPAND[key];
+                        if (query.startsWith(key)) {
+                            query2 = value + query.substring(key.length);
+                        }
                     }
-
+                    
                     let queryParts = query2.split(" ").map(q => q.trim()).filter(q => q.length > 0);
 
                     for (let chain of Chains.store.getChainsData()) {

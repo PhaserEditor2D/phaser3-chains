@@ -203,17 +203,11 @@ var Chains;
             if (query.length > 0) {
                 if (this.showChains) {
                     var query2 = query;
-                    if (query.startsWith("this.")) {
-                        query2 = "scene." + query.substring(5, query.length);
-                    }
-                    else if (query.startsWith("this ")) {
-                        query2 = "scene." + query.substring(5, query.length);
-                    }
-                    else if (query.startsWith("@ this.")) {
-                        query2 = "@ scene." + query.substring(7, query.length);
-                    }
-                    else if (query.startsWith("@ this ")) {
-                        query2 = "@ scene." + query.substring(7, query.length);
+                    for (var key in ChainsPage.EXPAND) {
+                        var value = ChainsPage.EXPAND[key];
+                        if (query.startsWith(key)) {
+                            query2 = value + query.substring(key.length);
+                        }
                     }
                     var queryParts = query2.split(" ").map(function (q) { return q.trim(); }).filter(function (q) { return q.length > 0; });
                     for (var _i = 0, _a = Chains.store.getChainsData(); _i < _a.length; _i++) {
@@ -294,6 +288,12 @@ var Chains;
                 start: start,
                 end: end
             };
+        };
+        ChainsPage.EXPAND = {
+            "this.": "scene.",
+            "this ": "scene ",
+            "@ this.": "@ scene",
+            "@ this ": "@ scene "
         };
         return ChainsPage;
     }());

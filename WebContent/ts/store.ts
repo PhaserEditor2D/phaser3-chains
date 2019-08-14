@@ -9,6 +9,8 @@ namespace Chains {
             public readonly returnType: string,
             public readonly icon: string,
             public readonly memberId: string,
+            public readonly inherited: boolean,
+            public readonly depth: number,
             public readonly searchInput = (chain + " : " + returnType).toLowerCase()
         ) {
 
@@ -118,7 +120,7 @@ namespace Chains {
         createChainsData(chainsData: any) {
             this._chainsData = [];
             for (let item of chainsData) {
-                let chain = new ChainItem(item.chain, item.retType, item.icon, item.id);
+                let chain = new ChainItem(item.chain, item.retType, item.icon, item.id, item.inherit, item.depth);
                 chain.member = this.getApiMember(chain.memberId);
                 this._chainsData.push(chain);
             }
