@@ -221,12 +221,7 @@ var Chains;
                     var queryParts = query2.split(" ").map(function (q) { return q.trim(); }).filter(function (q) { return q.length > 0; });
                     for (var _i = 0, _a = Chains.store.getChainsData(); _i < _a.length; _i++) {
                         var chain = _a[_i];
-                        var chainCode = chain.depth == 0 ? "@" : "%";
-                        var line = chainCode
-                            + chain.chain + " : " + chain.returnType
-                            + (chain.inherited ? " #i" : " #d")
-                            + (chain.member.since ? " v" + chain.member.since : "");
-                        var result = this.matches(queryParts, line.toLowerCase());
+                        var result = this.matches(queryParts, chain.searchLine);
                         if (result.ok) {
                             chainsMatches.push(new ChainMatchInfo(chain, null, null, result.start, result.end));
                         }

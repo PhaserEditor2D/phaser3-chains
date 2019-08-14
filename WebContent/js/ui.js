@@ -7,7 +7,7 @@ var Chains;
         chainDeclTypeColor: "#071683",
         chainRetTypeColor: "#20658a",
         chainVerColor: "rgba(40, 90, 0, 0.5)",
-        chainTagColor: "0f0f0f",
+        chainTagColor: "rgba(255, 0, 0, 0.5)",
         exampleFileColor: "#008800",
         exampleLineColor: "#880088",
         exampleLineNumberColor: "whiteSmoke"

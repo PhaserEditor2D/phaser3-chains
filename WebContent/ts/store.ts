@@ -3,6 +3,7 @@ namespace Chains {
 
     export class ChainItem {
         member: ApiMember;
+        searchLine: string;
 
         constructor(
             public readonly chain: string,
@@ -10,9 +11,18 @@ namespace Chains {
             public readonly icon: string,
             public readonly memberId: string,
             public readonly inherited: boolean,
-            public readonly depth: number            
+            public readonly depth: number
         ) {
+        }
 
+        build() {
+            this.member = Chains.store.getApiMember(this.memberId);
+            let chainCode = this.depth == 0 ? "@" : "%";
+            this.searchLine = chainCode
+                + this.chain + " : " + this.returnType
+                + (this.inherited ? " #i" : " #d")
+                + (this.member.since ? " v" + this.member.since : "");
+            this.searchLine = this.searchLine.toLowerCase();
         }
     }
 
@@ -120,7 +130,7 @@ namespace Chains {
             this._chainsData = [];
             for (let item of chainsData) {
                 let chain = new ChainItem(item.chain, item.retType, item.icon, item.id, item.inherit, item.depth);
-                chain.member = this.getApiMember(chain.memberId);
+                chain.build();
                 this._chainsData.push(chain);
             }
         }

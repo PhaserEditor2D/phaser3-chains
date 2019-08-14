@@ -44,6 +44,15 @@ var Chains;
             this.inherited = inherited;
             this.depth = depth;
         }
+        ChainItem.prototype.build = function () {
+            this.member = Chains.store.getApiMember(this.memberId);
+            var chainCode = this.depth == 0 ? "@" : "%";
+            this.searchLine = chainCode
+                + this.chain + " : " + this.returnType
+                + (this.inherited ? " #i" : " #d")
+                + (this.member.since ? " v" + this.member.since : "");
+            this.searchLine = this.searchLine.toLowerCase();
+        };
         return ChainItem;
     }());
     Chains.ChainItem = ChainItem;
@@ -157,7 +166,7 @@ var Chains;
             for (var _i = 0, chainsData_1 = chainsData; _i < chainsData_1.length; _i++) {
                 var item = chainsData_1[_i];
                 var chain = new ChainItem(item.chain, item.retType, item.icon, item.id, item.inherit, item.depth);
-                chain.member = this.getApiMember(chain.memberId);
+                chain.build();
                 this._chainsData.push(chain);
             }
         };

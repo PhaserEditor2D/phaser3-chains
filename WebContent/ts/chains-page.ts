@@ -267,14 +267,8 @@ namespace Chains {
 
                     let queryParts = query2.split(" ").map(q => q.trim()).filter(q => q.length > 0);
 
-                    for (let chain of Chains.store.getChainsData()) {
-                        let chainCode = chain.depth == 0 ? "@" : "%";
-                        let line = chainCode
-                            + chain.chain + " : " + chain.returnType
-                            + (chain.inherited ? " #i" : " #d")
-                            + (chain.member.since ? " v" + chain.member.since : "");
-
-                        let result = this.matches(queryParts, line.toLowerCase());
+                    for (let chain of Chains.store.getChainsData()) {                        
+                        let result = this.matches(queryParts, chain.searchLine);
                         if (result.ok) {
                             chainsMatches.push(new ChainMatchInfo(chain, null, null, result.start, result.end));
                         }
