@@ -90,7 +90,7 @@ Every chain starts with a special symbol that identifies it. you can use that sy
 
 ### Select chains by inheritance
 
-At the end of each API chain there is "tag" to indicate it it is an inherited (`#i`) or declared (`#d`) element.
+At the end of each API chain there is a "tag" to indicate if it is an inherited (`#i`) or declared (`#d`) element.
 
 Query for:
 
