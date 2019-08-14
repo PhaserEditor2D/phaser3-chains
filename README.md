@@ -2,11 +2,13 @@
 
 [Phaser Chains](https://phasereditor2d.com/chains) is a tool to browse the Phaser API and examples. It is not the common navigator that presents the data as a tree of elements.
 
-For each Phaser API element we create a line of code (chain) with a particular format, so you will perform a search on all these lines and use the format to extract the information you are looking for.
+For each Phaser API element we create a line of code (chain) with a particular pattern, so you will perform a search on all these lines and use the pattern to extract the information you are looking for.
+
+We can say there are two type of API chains, a pure API element, like `Phaser.GameObjects.GameObjectFactory.sprite(..)`, and a "chained" element, like `Phaser.Scene.add.sprite(...)`. Both expressions point to the same API element. Note the chaining element is the "innovation" here, and allows to discover the API quickly.
 
 Let's see an example:
 
-You know the Phaser API allows to write lot of "chaining code", and you can add objects to a scene in this way: `this.add.sprite(...)`. That's ok, but know you want to know all the kind of objects you can add to the scene in the same way, so you write the query:
+You know you can add objects to a scene in this way: `this.add.sprite(...)`, chaining properties and methods. That's ok, but know you want to know all the kind of objects you can add to the scene in the same way, so you write the query:
 
 ```
 this.add (
@@ -35,7 +37,7 @@ Then you will get a merge of Phaser API elements and Phaser examples lines.
 ![Results on Phaser API and Phaser examples](guide-images/search-3.png)
 
 
-## The Documentation Panel
+## The documentation panel
 
 If you click on a chain created with the Phaser API, it shows a panel with: 
 
@@ -50,7 +52,7 @@ You can press the `ESC` key to show/hide the panel.
 ![Docs panel](guide-images/docs-panel.png)
 
 
-## The Example Panel
+## The example panel
 
 When you click on an example line or example file name, it shows a panel with links to the example player and the example source.
 
@@ -81,17 +83,33 @@ This expansion is applied only when it tests against API chains. When it tests a
 
 Every chain starts with a special symbol that identifies it. you can use that symbol in your queries to get only chains of a specific type:
 
-* All Phaser API chains start with `@`.
-* All example files chains start with `/`.
-* All example lines start with `>`.
+* All Phaser API elements (without chaining, like `Phaser.Loader.LoaderPlugin.image(...)`) start with `@`.
+* All chained Phaser API elements (like `Phaser.Scene.load.image(...)`) start with `%`.
+* All example file names start with `/`.
+* All example content lines start with `>`.
+
+### Select chains by inheritance
+
+At the end of each API chain there is "tag" to indicate it it is an inherited (`#i`) or declared (`#d`) element.
+
+Query for:
+
+```
+sprite.play
+```
+
+![Inheritance tags](guide-images/inherited-elements.png)
+
 
 ### Select chains by version
 
-Every API chain ends with the version of the API element. You can write a query to get the API introduced in a specific version by using the version number. For example, this query shows all the `Phaser.LoaderPlugin` members introduced in Phaser v3.17:
+Every API chain ends with the version of the API element. You can write a query to get the API introduced in a specific version by using the version number. For example, this query shows all GameObjects members introduced in Phaser v3.19.0:
 
 ```
-this.load v3.1
+@ gameobjects #d v3.19.0
 ```
+
+![Query by version](guide-images/query-by-version.png)
 
 ## Issues
 
