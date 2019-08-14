@@ -137,9 +137,9 @@ This Phaser Chains thing really helps, but the [Phaser Editor 2D](https://phaser
 ### v2.0.1 - August 14, 2019
 
 * Fixed typo in the documentation link.
-* Open documentation link in other tab.
+* Open documentation link in another tab.
 * Get new metadata from Phaser Editor 2D, with inherited elements and chaining depth info.
-* Chaining API elements starts with `%`, and simple API elements with `@`.
+* Chaining API elements start with `%`, and simple API elements with `@`.
 * Chaining API elements are painted with an italic font.+
 * Chains of API elements ends with `#i` if is inherited or `#d` if it is declared.
 * Updated the User Guide, especially the [Matching the chains](#matching-the-chains) section.
