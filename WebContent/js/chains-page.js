@@ -32,7 +32,7 @@ var Chains;
             var y = renderInfo.y;
             var info = renderInfo.data;
             var ui = Chains.ui;
-            ctx.font = "20px monospace";
+            ctx.font = renderInfo.data.chainItem.depth > 0 ? "italic 20px monospace" : "20px monospace";
             var gm = ctx.measureText("M");
             var charW = gm.width;
             var charH = 22;
@@ -40,7 +40,8 @@ var Chains;
             ctx.strokeStyle = selected ? (Chains.ui.getTheme().name === "dark" ? "white" : "darkred") : "brown";
             ctx.strokeRect(20 + charW * info.matchStart, y + 2, charW * (info.matchEnd - info.matchStart), 26);
             var chain = renderInfo.data.chainItem;
-            var chainLine = "@" + chain.chain;
+            var chainCode = chain.depth == 0 ? "@" : "%";
+            var chainLine = chainCode + chain.chain;
             var index = chainLine.lastIndexOf(".");
             var declType = chainLine.slice(1, index);
             var member = chainLine.slice(index, chainLine.length);
@@ -56,7 +57,7 @@ var Chains;
             ctx.drawImage(img, 0, y + 5, 20, 20);
             x += 20;
             ctx.fillStyle = "darkGray";
-            ctx.fillText("@", x, textY);
+            ctx.fillText(chainCode, x, textY);
             x += charW;
             ctx.fillStyle = ui.getTheme().chainDeclTypeColor;
             ctx.fillText(declType, x, textY);
@@ -196,7 +197,7 @@ var Chains;
         };
         ChainsPage.prototype.performQuery = function (query) {
             localStorage.chainsLastQuery = query;
-            query = query.toLowerCase().trim();
+            query = query.toLowerCase();
             var chainsMatches = [];
             var examplesFilesMatches = [];
             var examplesLinesMatches = [];
@@ -209,10 +210,12 @@ var Chains;
                             query2 = value + query.substring(key.length);
                         }
                     }
+                    console.log(query2);
                     var queryParts = query2.split(" ").map(function (q) { return q.trim(); }).filter(function (q) { return q.length > 0; });
                     for (var _i = 0, _a = Chains.store.getChainsData(); _i < _a.length; _i++) {
                         var chain = _a[_i];
-                        var result = this.matches(queryParts, "@" + chain.searchInput + (chain.member.since ? " v" + chain.member.since : ""));
+                        var chainCode = chain.depth == 0 ? "@" : "%";
+                        var result = this.matches(queryParts, chainCode + chain.searchInput + (chain.member.since ? " v" + chain.member.since : ""));
                         if (result.ok) {
                             chainsMatches.push(new ChainMatchInfo(chain, null, null, result.start, result.end));
                         }
@@ -290,10 +293,12 @@ var Chains;
             };
         };
         ChainsPage.EXPAND = {
-            "this.": "scene.",
-            "this ": "scene ",
-            "@ this.": "@ scene",
-            "@ this ": "@ scene "
+            "this.": "phaser.scene.",
+            "this ": "phaser.scene. ",
+            "@ this.": "@ phaser.scene.",
+            "@ this ": "@ phaser.scene.",
+            "% this.": "% phaser.scene.",
+            "% this ": "% phaser.scene. "
         };
         return ChainsPage;
     }());

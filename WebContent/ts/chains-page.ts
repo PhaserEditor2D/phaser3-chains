@@ -21,7 +21,7 @@ namespace Chains {
             let info = renderInfo.data;
             let ui = Chains.ui;
 
-            ctx.font = "20px monospace";
+            ctx.font = renderInfo.data.chainItem.depth > 0 ? "italic 20px monospace" : "20px monospace";
             let gm = ctx.measureText("M");
             let charW = gm.width;
             let charH = 22;
@@ -36,7 +36,8 @@ namespace Chains {
             // prepare chain painting
 
             let chain = renderInfo.data.chainItem;
-            let chainLine = "@" + chain.chain;
+            let chainCode = chain.depth == 0? "@" : "%";
+            let chainLine = chainCode + chain.chain;
             let index = chainLine.lastIndexOf(".");
             let declType = chainLine.slice(1, index);
             let member = chainLine.slice(index, chainLine.length);
@@ -56,7 +57,7 @@ namespace Chains {
             x += 20;
 
             ctx.fillStyle = "darkGray";
-            ctx.fillText("@", x, textY);
+            ctx.fillText(chainCode, x, textY);
             x += charW;
 
             ctx.fillStyle = ui.getTheme().chainDeclTypeColor;
@@ -226,15 +227,17 @@ namespace Chains {
         }
 
         static EXPAND = {
-            "this.": "scene.",
-            "this ": "scene ",
-            "@ this.": "@ scene",
-            "@ this ": "@ scene "
+            "this.": "phaser.scene.",
+            "this ": "phaser.scene. ",
+            "@ this.": "@ phaser.scene.",
+            "@ this ": "@ phaser.scene.",
+            "% this.": "% phaser.scene.",
+            "% this ": "% phaser.scene. "
         };
 
         performQuery(query: string): void {
             localStorage.chainsLastQuery = query;
-            query = query.toLowerCase().trim();
+            query = query.toLowerCase();
 
             let chainsMatches: ChainMatchInfo[] = [];
             let examplesFilesMatches: ChainMatchInfo[] = [];
@@ -245,17 +248,20 @@ namespace Chains {
                 if (this.showChains) {
                     let query2 = query;
 
-                    for(let key in ChainsPage.EXPAND) {
+                    for (let key in ChainsPage.EXPAND) {
                         let value = ChainsPage.EXPAND[key];
                         if (query.startsWith(key)) {
                             query2 = value + query.substring(key.length);
                         }
                     }
-                    
+
+                    console.log(query2);
+
                     let queryParts = query2.split(" ").map(q => q.trim()).filter(q => q.length > 0);
 
                     for (let chain of Chains.store.getChainsData()) {
-                        let result = this.matches(queryParts, "@" + chain.searchInput + (chain.member.since ? " v" + chain.member.since : ""));
+                        let chainCode = chain.depth == 0? "@" : "%";
+                        let result = this.matches(queryParts, chainCode + chain.searchInput + (chain.member.since ? " v" + chain.member.since : ""));
                         if (result.ok) {
                             chainsMatches.push(new ChainMatchInfo(chain, null, null, result.start, result.end));
                         }
