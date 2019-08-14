@@ -111,6 +111,43 @@ Every API chain ends with the version of the API element. You can write a query 
 
 ![Query by version](guide-images/query-by-version.png)
 
+## Sharing a query
+
+You can share a query using a `query` URL parameter:
+
+```
+https://phasereditor2d.com/chains/?query=this.add%20(
+```
+
+Note that you have to encode the URL because there are symbols like `#` that can break the query.
+
+You can take a look to this [ASCII Encoding Reference](https://www.w3schools.com/tags/ref_urlencode.asp).
+
+The most common symbols are:
+
+<table>
+    <tr>
+        <td>space</td><td>%20</td>
+    </tr>
+    <tr>
+        <td>@</td><td>%40</td>
+    </tr>
+    <tr>
+        <td>%</td><td>%25</td>
+    </tr>
+    <tr>
+        <td>/</td><td>%2F</td>
+    </tr>
+    <tr>
+        <td>&gt;</td><td>%3C</td>
+    </tr>
+    <tr>
+        <td>#</td><td>%3C</td>
+    </tr>
+</table>
+
+We should implement a "share query" button in a future release.
+
 ## Issues
 
 Please, file issues here, in this project.
