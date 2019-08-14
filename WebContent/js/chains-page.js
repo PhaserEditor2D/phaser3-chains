@@ -70,12 +70,19 @@ var Chains;
                 ctx.fillText(args, x, textY);
                 x += args.length * charW;
             }
+            var str = " : " + chain.returnType;
             ctx.fillStyle = ui.getTheme().chainRetTypeColor;
-            ctx.fillText(" : " + chain.returnType, x, textY);
-            x += (" : ".length + chain.returnType.length) * charW;
+            ctx.fillText(str, x, textY);
+            x += str.length * charW;
+            str = chain.inherited ? " #i" : " #d";
+            ctx.fillStyle = ui.getTheme().chainTagColor;
+            ctx.fillText(str, x, textY);
+            x += str.length * charW;
             if (chain.member.since) {
                 ctx.fillStyle = ui.getTheme().chainVerColor;
-                ctx.fillText(" v" + chain.member.since, x, textY);
+                str = " v" + chain.member.since;
+                ctx.fillText(str, x, textY);
+                x += str.length * charW;
             }
         };
         return ChainCellRenderer;
@@ -215,7 +222,11 @@ var Chains;
                     for (var _i = 0, _a = Chains.store.getChainsData(); _i < _a.length; _i++) {
                         var chain = _a[_i];
                         var chainCode = chain.depth == 0 ? "@" : "%";
-                        var result = this.matches(queryParts, chainCode + chain.searchInput + (chain.member.since ? " v" + chain.member.since : ""));
+                        var line = chainCode
+                            + chain.chain + " : " + chain.returnType
+                            + (chain.inherited ? " #i" : " #d")
+                            + (chain.member.since ? " v" + chain.member.since : "");
+                        var result = this.matches(queryParts, line.toLowerCase());
                         if (result.ok) {
                             chainsMatches.push(new ChainMatchInfo(chain, null, null, result.start, result.end));
                         }

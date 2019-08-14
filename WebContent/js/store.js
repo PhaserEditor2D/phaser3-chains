@@ -36,15 +36,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var Chains;
 (function (Chains) {
     var ChainItem = (function () {
-        function ChainItem(chain, returnType, icon, memberId, inherited, depth, searchInput) {
-            if (searchInput === void 0) { searchInput = (chain + " : " + returnType).toLowerCase(); }
+        function ChainItem(chain, returnType, icon, memberId, inherited, depth) {
             this.chain = chain;
             this.returnType = returnType;
             this.icon = icon;
             this.memberId = memberId;
             this.inherited = inherited;
             this.depth = depth;
-            this.searchInput = searchInput;
         }
         return ChainItem;
     }());

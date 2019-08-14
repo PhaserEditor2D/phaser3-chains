@@ -10,8 +10,7 @@ namespace Chains {
             public readonly icon: string,
             public readonly memberId: string,
             public readonly inherited: boolean,
-            public readonly depth: number,
-            public readonly searchInput = (chain + " : " + returnType).toLowerCase()
+            public readonly depth: number            
         ) {
 
         }

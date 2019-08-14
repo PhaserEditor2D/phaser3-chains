@@ -36,7 +36,7 @@ namespace Chains {
             // prepare chain painting
 
             let chain = renderInfo.data.chainItem;
-            let chainCode = chain.depth == 0? "@" : "%";
+            let chainCode = chain.depth == 0 ? "@" : "%";
             let chainLine = chainCode + chain.chain;
             let index = chainLine.lastIndexOf(".");
             let declType = chainLine.slice(1, index);
@@ -73,15 +73,23 @@ namespace Chains {
                 ctx.fillText(args, x, textY);
                 x += args.length * charW;
             }
-
+            let str = " : " + chain.returnType;
             ctx.fillStyle = ui.getTheme().chainRetTypeColor;
-            ctx.fillText(" : " + chain.returnType, x, textY);
-            x += (" : ".length + chain.returnType.length) * charW;
+            ctx.fillText(str, x, textY);
+            x += str.length * charW;
+
+            str = chain.inherited ? " #i" : " #d";
+            ctx.fillStyle = ui.getTheme().chainTagColor;
+            ctx.fillText(str, x, textY);
+            x += str.length * charW;
 
             if (chain.member.since) {
                 ctx.fillStyle = ui.getTheme().chainVerColor;
-                ctx.fillText(" v" + chain.member.since, x, textY);
+                str = " v" + chain.member.since;
+                ctx.fillText(str, x, textY);
+                x += str.length * charW;
             }
+
         }
 
     }
@@ -260,8 +268,13 @@ namespace Chains {
                     let queryParts = query2.split(" ").map(q => q.trim()).filter(q => q.length > 0);
 
                     for (let chain of Chains.store.getChainsData()) {
-                        let chainCode = chain.depth == 0? "@" : "%";
-                        let result = this.matches(queryParts, chainCode + chain.searchInput + (chain.member.since ? " v" + chain.member.since : ""));
+                        let chainCode = chain.depth == 0 ? "@" : "%";
+                        let line = chainCode
+                            + chain.chain + " : " + chain.returnType
+                            + (chain.inherited ? " #i" : " #d")
+                            + (chain.member.since ? " v" + chain.member.since : "");
+
+                        let result = this.matches(queryParts, line.toLowerCase());
                         if (result.ok) {
                             chainsMatches.push(new ChainMatchInfo(chain, null, null, result.start, result.end));
                         }
