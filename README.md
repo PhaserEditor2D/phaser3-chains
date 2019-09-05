@@ -139,10 +139,10 @@ The most common symbols are:
         <td>/</td><td>%2F</td>
     </tr>
     <tr>
-        <td>&gt;</td><td>%3C</td>
+        <td>&gt;</td><td>%3E</td>
     </tr>
     <tr>
-        <td>#</td><td>%3C</td>
+        <td>#</td><td>%23</td>
     </tr>
 </table>
 
