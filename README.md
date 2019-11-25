@@ -169,7 +169,11 @@ You are free to use this code in your projects. Credits are not required but is 
 This Phaser Chains thing really helps, but the [Phaser Editor 2D](https://phasereditor2d.com) tooling helps even more, try it :-)
 
 
-## Change log
+## Change Log
+
+### v2.0.3 - November 25, 2019
+
+* Update Phaser data to Phaser v3.21.0
 
 ### v2.0.2 - October 16, 2019
 

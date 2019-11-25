@@ -1,5 +1,5 @@
 namespace Chains {
-    export const VERSION = 4;
-    export const SEMVER = "2.0.2";
-    export const PHASER_VERSION = "3.20.1";
+    export const VERSION = 5;
+    export const SEMVER = "2.0.3";
+    export const PHASER_VERSION = "3.21.0";
 }
