@@ -173,6 +173,10 @@ This Phaser Chains thing really helps, but the [Phaser Editor 2D](https://phaser
 
 ### v2.0.4 - April 28, 2020
 
+* Update Phaser data to Phaser v3.24.1
+
+### v2.0.4 - April 28, 2020
+
 * Update Phaser data to Phaser v3.23.0
 
 ### v2.0.3 - November 25, 2019
