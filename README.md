@@ -171,7 +171,7 @@ This Phaser Chains thing really helps, but the [Phaser Editor 2D](https://phaser
 
 ## Change Log
 
-### v2.0.4 - April 28, 2020
+### v2.0.5 - July 15, 2020
 
 * Update Phaser data to Phaser v3.24.1
 
