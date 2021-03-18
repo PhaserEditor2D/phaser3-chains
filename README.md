@@ -1,6 +1,6 @@
 # Phaser Chains
 
-[Phaser Chains](https://phasereditor2d.com/chains) is a tool to browse the Phaser API and examples. It is not the common navigator that presents the data as a tree of elements.
+[Phaser Chains](https://chains.phasereditor2d.com/) is a tool to browse the Phaser API and examples. It is not the common navigator that presents the data as a tree of elements.
 
 For each Phaser API element we create a line of code (chain) with a particular pattern, so you will perform a search on all these lines and use the pattern to extract the information you are looking for.
 
@@ -116,7 +116,7 @@ Every API chain ends with the version of the API element. You can write a query 
 You can share a query using a `query` URL parameter:
 
 ```
-https://phasereditor2d.com/chains/?query=this.add%20(
+https://chains.phasereditor2d.com/?query=this.add%20(
 ```
 
 Note that you have to encode the URL because there are symbols like `#` that can break the query.
